@@ -1,0 +1,130 @@
+site_name: Tudat Developer
+site_description: Tudat Developer Documentation
+site_author: Geoffrey Garrett
+
+theme:
+  name: "material"
+  custom_dir: custom/
+  logo: assets/images/logo.png
+  palette:
+    - scheme: default
+      primary: light blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: light blue
+      accent: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  font:
+    text: Roboto
+
+  features:
+    - navigation.tabs
+    - navigation.instant    # single-page application (SPA) navigation
+    - content.code.annotate
+    - navigation.tracking
+    - content.code.copy
+
+# Repository
+repo_name: tudat-team/tudat-developer-docs
+repo_url: https://github.com/tudat-team/tudat-developer-docs
+
+nav:
+  - Home: index.md
+  - Primer:
+      - GitHub: primer/homebase.md
+      - Azure: primer/azure.md
+      - Repositories: primer/repositories.md
+      - Documentation: primer/documentation.md
+      - Docstrings: primer/docstring_templates.md
+      - Multidoc: primer/multidoc.md
+      - Readthedocs: primer/readthedocs.md
+  - Guides:
+      - Create a Bugfix: guides/create-bugfix.md
+      - Create a Feedstock: guides/create-feedstock.md
+      - Create a Hotfix: guides/create-hotfix.md
+      - Create a Release: guides/create-release.md
+      - Create a Feature: guides/create-feature.md
+      - Setup a Repository: guides/setup-repository.md
+  - Reference:
+      - Environment Variables: reference/environment-variables.md
+      - Managing Tokens: reference/managing-tokens.md
+      - Developer Workflows: reference/developer-workflows.md
+      - Diátaxis Framework: reference/documentation-modes.md
+      - Common Commands: reference/common-commands.md
+      - Documentation Styling: reference/documentation-styling.md
+
+watch:
+  - custom
+  - custom/home.html
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - lightgallery:
+      show_description_in_lightgallery: true
+      show_description_as_inline_caption: false
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - toc:
+      permalink: true
+
+extra_css:
+  - https://unpkg.com/mermaid@9.4.0/dist/mermaid.css
+extra_javascript:
+  - https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js
+
+plugins:
+  - search
+  - inline-svg
+#plugins:
+#  - with-pdf:
+     #author: WHO
+     #copyright: ANY TEXT
+     #
+     #cover: false
+     #back_cover: true
+     #cover_title: TITLE TEXT
+     #cover_subtitle: SUBTITLE TEXT
+     #custom_template_path: TEMPLATES PATH
+     #
+     #toc_title: TOC TITLE TEXT
+     #heading_shift: false
+     #toc_level: 3
+     #ordered_chapter_level: 2
+     #excludes_children:
+     #    - 'release-notes/:upgrading'
+     #    - 'release-notes/:changelog'
+     #
+     #exclude_pages:
+     #    - 'bugs/'
+     #    - 'appendix/contribute/'
+     #convert_iframe:
+     #    - src: IFRAME SRC
+     #      img: POSTER IMAGE URL
+     #      text: ALTERNATE TEXT
+     #    - src: ...
+     #two_columns_level: 3
+     #
+     #render_js: true
+     #headless_chrome_path: headless-chromium
+     #
+#     output_path: /home/ggarrett/Repositories/tudat-developer-docs/tudat-developer/document.pdf
+     #enabled_if_env: ENABLE_PDF_EXPORT
+     #
+     #debug_html: true
+     #show_anchors: true
+     #verbose: true
