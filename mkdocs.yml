@@ -31,8 +31,8 @@ theme:
     - content.code.copy
 
 # Repository
-repo_name: tudat-team/tudat-developer-docs
-repo_url: https://github.com/tudat-team/tudat-developer-docs
+repo_name: tudat-team/tudat-developer
+repo_url: https://github.com/tudat-team/tudat-developer
 
 nav:
   - Home: index.md
