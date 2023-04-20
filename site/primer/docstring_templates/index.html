@@ -1,0 +1,1149 @@
+<!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Tudat Developer Documentation">
+      
+      
+        <meta name="author" content="Geoffrey Garrett">
+      
+      
+      
+        <link rel="prev" href="../documentation/">
+      
+      
+        <link rel="next" href="../multidoc/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
+    
+    
+      
+        <title>Docstrings - Tudat Developer</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/mermaid@9.4.0/dist/mermaid.css">
+    
+      <link rel="stylesheet" href="/assets/css/videos.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+<!-- Extra style sheets (can't be set in mkdocs.yml due to content hash) -->
+<link
+        rel="stylesheet"
+        href="../../assets/stylesheets/custom.css"
+/>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#yaml-templates" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Tudat Developer" class="md-header__button md-logo" aria-label="Tudat Developer" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Tudat Developer
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docstrings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tudat-team/tudat-developer-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tudat-team/tudat-developer-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../homebase/" class="md-tabs__link md-tabs__link--active">
+        Primer
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../guides/update-conda-token/" class="md-tabs__link">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/environment-variables/" class="md-tabs__link">
+        Reference
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Tudat Developer" class="md-nav__button md-logo" aria-label="Tudat Developer" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Tudat Developer
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tudat-team/tudat-developer-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tudat-team/tudat-developer-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Primer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Primer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../homebase/" class="md-nav__link">
+        GitHub
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azure/" class="md-nav__link">
+        Azure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositories/" class="md-nav__link">
+        Repositories
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Docstrings
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Docstrings
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enumerations" class="md-nav__link">
+    Enumerations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-class" class="md-nav__link">
+    Base class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derived-class" class="md-nav__link">
+    Derived class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multidoc/" class="md-nav__link">
+        Multidoc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readthedocs/" class="md-nav__link">
+        Readthedocs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/update-conda-token/" class="md-nav__link">
+        Update Anaconda Cloud Token
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-bugfix/" class="md-nav__link">
+        Create a Bugfix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-feedstock/" class="md-nav__link">
+        Create a Feedstock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-hotfix/" class="md-nav__link">
+        Create a Hotfix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-release/" class="md-nav__link">
+        Create a Release
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-feature/" class="md-nav__link">
+        Create a Feature
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/setup-repository/" class="md-nav__link">
+        Setup a Repository
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/environment-variables/" class="md-nav__link">
+        Environment Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/managing-tokens/" class="md-nav__link">
+        Managing Tokens
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/developer-workflows/" class="md-nav__link">
+        Developer Workflows
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/documentation-modes/" class="md-nav__link">
+        Diátaxis Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/common-commands/" class="md-nav__link">
+        Common Commands
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/documentation-styling/" class="md-nav__link">
+        Documentation Styling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#enumerations" class="md-nav__link">
+    Enumerations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#base-class" class="md-nav__link">
+    Base class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derived-class" class="md-nav__link">
+    Derived class
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<div><h1 id="yaml-templates">YAML templates<a class="headerlink" href="#yaml-templates" title="Permanent link">¶</a></h1>
+<p>Below, templates to write docstrings of tudat and tudatpy objects are
+provided.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is assumed that the reader is familiar with the content of the page
+about <code>How to write docstrings</code>.</p>
+</div>
+<h2 id="enumerations">Enumerations<a class="headerlink" href="#enumerations" title="Permanent link">¶</a></h2>
+<hr>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This template was adapted from the docstrings of the
+<code>RadiationPressureType</code> enum (see it on
+<a href="https://github.com/tudat-team/tudat-multidoc/blob/22b22740b5e5a5598ef0393f642912caf38ea2bb/docstrings/numerical_simulation/environment_setup/radiation_pressure.yaml#L28">GitHub</a>),
+therefore it refers to environment settings objects. However, its
+content can be adapted to other base classes.</p>
+</div>
+<p>Legend:</p>
+<ul>
+<li><code>&lt;XXX&gt;</code> = name of the enumeration</li>
+<li><code>&lt;memberXName&gt;</code> = member number X of the enumeration</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">enums</span><span class="p">:</span>
+
+<span class="c1">#    py::enum_&lt;XXX&gt;</span>
+<span class="c1">#        enum XXX</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;enumPythonName&gt;</span>
+<span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"What</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">enum</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">about"</span>
+
+<span class="nt">members</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;member1Name&gt;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;member2Name&gt;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+</code></pre></div>
+<h2 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">¶</a></h2>
+<hr>
+<h3 id="base-class">Base class<a class="headerlink" href="#base-class" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This template was adapted from the docstrings of the <code>EphemerisSettings</code>
+class (see it on
+<a href="https://github.com/tudat-team/tudat-multidoc/blob/6c681130a7ad31577c9542dbc105b8d63575f0a2/docstrings/numerical_simulation/environment_setup/ephemeris.yaml#L17">Github</a>),
+therefore it refers to environment settings objects. However, its
+content can be adapted to other base classes.</p>
+</div>
+<p>Legend:</p>
+<ul>
+<li><code>&lt;XXX&gt;</code> = class name</li>
+<li><code>&lt;pyattribute_1&gt;</code> = some attribute of class, which via the get/set cpp
+  functions is exposed as a class property in python</li>
+<li><code>&lt;pytype_1&gt;</code> = type of <code>&lt;pyattribute_1&gt;</code></li>
+<li><code>&lt;description_1&gt;</code> = brief description of <code>&lt;pyattribute_1&gt;</code></li>
+<li><code>&lt;pyattribute_2&gt;</code> = ...</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">classes</span><span class="p">:</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;XXX&gt;Settings</span>
+<span class="w">  </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Base</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">providing</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">&lt;XXX&gt;</span><span class="nv"> </span><span class="s">model."</span>
+<span class="w">  </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Functional (base) class for settings of &lt;XXX&gt; models that require no information in addition to their type.</span>
+<span class="w">      </span><span class="no">&lt;XXX&gt; model classes requiring additional information must be created using an object derived from this class.</span>
+
+<span class="w">  </span><span class="nt">attributes</span><span class="p">:</span><span class="w">  </span><span class="c1"># [py]  note: attributes for python only!</span>
+<span class="w">   </span><span class="c1"># note that &lt;attribute_1&gt; is read/write because tudatpy has get/reset functions for &lt;attribute_1&gt; (documented  under methods).</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;attribute_1&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;pytype_1&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;description_1&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">   </span><span class="c1"># note that &lt;attribute_2&gt; is readonly because tudatpy has only a get functions to access &lt;attribute_2&gt; (documented under methods).</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;attribute_2&gt;</span><span class="w"> </span><span class="c1"># [py]  readonly</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;pytype_2&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;description_2&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+
+<span class="w">    </span><span class="nt">methods</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># list the constructor as first method - python constructor docstrings no longer needed, since constructor  will be removed from exposure.</span>
+
+<span class="w">    </span><span class="c1"># note that no parameters are given to discourage direct use of constructor (see **** classes and factory functions ****)</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ctor</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Constructor."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Instances</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">typically</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">generated</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">user.</span><span class="nv"> </span><span class="s">Settings</span><span class="nv"> </span><span class="s">objects</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">XXX</span><span class="nv"> </span><span class="s">models</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">instantiated</span><span class="nv"> </span><span class="s">through</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">factory</span><span class="nv"> </span><span class="s">functions</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">derived</span><span class="nv"> </span><span class="s">class."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">    </span><span class="c1"># now get/set methods of cpp class:</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get&lt;attribute_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Retrieve</span><span class="nv"> </span><span class="s">&lt;attribute_1&gt;."</span><span class="w"> </span><span class="nt">// if &lt;cpptype_1&gt; is bool use phrase</span><span class="p">:</span><span class="w"> </span><span class="s">"Check</span><span class="nv"> </span><span class="s">whether</span><span class="nv"> </span><span class="s">..."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">retrieve</span><span class="nv"> </span><span class="s">&lt;attribute_1&gt;."</span><span class="w"> </span><span class="nt">// if &lt;cpptype_1&gt; is bool use phrase</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">retrieve</span><span class="nv"> </span><span class="s">boolean</span><span class="nv"> </span><span class="s">that..."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">           </span><span class="c1"># parameters: there are no parameters in getter functions</span>
+
+<span class="w">          </span><span class="nt">returns</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;cpptype_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">              </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;description_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reset&lt;attribute_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Reset</span><span class="nv"> </span><span class="s">&lt;attribute_1&gt;."</span><span class="w"> </span><span class="nt">// if &lt;cpptype_1&gt; is bool use phrase</span><span class="p">:</span><span class="w"> </span><span class="s">"Set</span><span class="nv"> </span><span class="s">whether</span><span class="nv">  </span><span class="s">..."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">reset</span><span class="nv"> </span><span class="s">&lt;attribute_1&gt;."</span><span class="w"> </span><span class="nt">// if &lt;cpptype_1&gt; is bool use phrase</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">set</span><span class="nv"> </span><span class="s">boolean</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">denotes</span><span class="nv"> </span><span class="s">whether</span><span class="nv">  </span><span class="s">..."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">          </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;attribute_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">              </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;cpptype_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">              </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;description_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">          </span><span class="w w-Error"> </span><span class="nt">returns</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">there is no return in setter functions</span>
+
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get&lt;attribute_2&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Retrieve</span><span class="nv"> </span><span class="s">&lt;attribute_2&gt;."</span><span class="w"> </span><span class="nt">//  if &lt;cpptype_2&gt; is bool use phrase</span><span class="p">:</span><span class="w"> </span><span class="s">"Check</span><span class="nv"> </span><span class="s">whether</span><span class="nv"> </span><span class="s">..."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">retrieve</span><span class="nv"> </span><span class="s">&lt;attribute_2&gt;."</span><span class="w"> </span><span class="nt">//  if &lt;cpptype_2&gt; is bool use phrase</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">retrieve</span><span class="nv"> </span><span class="s">boolean</span><span class="nv"> </span><span class="s">that..."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">           </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">there are no parameters in getter functions</span>
+<span class="w">          </span><span class="nt">returns</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;cpptype_2&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">              </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;description_2&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+</code></pre></div>
+<h3 id="derived-class">Derived class<a class="headerlink" href="#derived-class" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This template was adapted from the docstrings of the
+<code>DirectSpiceEphemerisSettings</code> class (see it on
+<a href="https://github.com/tudat-team/tudat-multidoc/blob/6c681130a7ad31577c9542dbc105b8d63575f0a2/docstrings/numerical_simulation/environment_setup/ephemeris.yaml#L157">Github</a>),
+therefore it refers to environment settings objects. However, its
+content can be adapted to other derived classes.</p>
+</div>
+<p>Legend:</p>
+<ul>
+<li><code>&lt;XXY&gt;</code> = DirectSpiceEphemeris</li>
+<li><code>&lt;XXX&gt;</code> = Ephemeris</li>
+<li><code>&lt;xxy&gt;</code> = directSpiceEphemerisSettings (factory function)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Public attributes &amp; methods from the <code>&lt;XXX&gt;</code> base class do not have to
+be re-documented in derived classes (they are inherited in the API).</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;XXY&gt;Settings</span>
+<span class="w">  </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Class</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">defining</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">&lt;XXY&gt;."</span>
+<span class="w">  </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"`&lt;XXX&gt;Settings`</span><span class="nv"> </span><span class="s">derived</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">ephemeris</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">&lt;minimal</span><span class="nv"> </span><span class="s">description</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">derived</span><span class="nv"> </span><span class="s">class&gt;."</span>
+
+<span class="w">   </span><span class="nt">attributes</span><span class="p">:</span>
+<span class="w">     </span><span class="c1"># same scheme as documenting attributes from base class: python only, distinction read/write</span>
+
+<span class="w">    </span><span class="nt">methods</span><span class="p">:</span><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">python constructor docstrings no longer needed, since constructor will be removed from exposure.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">- name</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ctor</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Constructor."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Instances</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">`&lt;XXY&gt;Settings`</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">created</span><span class="nv"> </span><span class="s">through</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">`&lt;xxy&gt;`</span><span class="nv"> </span><span class="s">factory</span><span class="nv"> </span><span class="s">function."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">       </span><span class="c1"># other methods, documented in the same style as in base class</span>
+</code></pre></div>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This template was adapted from the docstrings of the
+<code>directSpiceEphemerisSettings</code> factory function (see it on
+<a href="https://github.com/tudat-team/tudat-multidoc/blob/6c681130a7ad31577c9542dbc105b8d63575f0a2/docstrings/numerical_simulation/environment_setup/ephemeris.yaml#L459">Github</a>),
+therefore it refers to environment settings objects. However, its
+content can be adapted to other functions.</p>
+</div>
+<p>Legend:</p>
+<ul>
+<li><code>&lt;XXY&gt;</code> = DirectSpiceEphemeris</li>
+<li><code>&lt;XXX&gt;</code> = Ephemeris</li>
+<li><code>&lt;xxy&gt;</code> = directSpiceEphemerisSettings (FF)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nt">functions</span><span class="p">:</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt; python_name of &lt;xxy&gt; &gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;xxy&gt;</span><span class="w">  </span><span class="c1"># [cpp]</span>
+<span class="w">  </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Factory</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">creating</span><span class="nv"> </span><span class="s">&lt;</span><span class="nv"> </span><span class="s">brief</span><span class="nv"> </span><span class="s">description</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">created</span><span class="nv"> </span><span class="s">object</span><span class="nv"> </span><span class="s">serves</span><span class="nv"> </span><span class="s">&gt;."</span>
+<span class="w">  </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Factory function for settings object, &lt; brief description of the function that the created object serves &gt;.</span>
+<span class="w">      </span><span class="no">&lt; additional info / context, mostly found on tudat-space/API/... website &gt;</span>
+<span class="w">      </span><span class="no">This function creates an instance of an `&lt;XXX&gt;Settings` derived `&lt;XXY&gt;Settings` object.</span>
+
+<span class="w">  </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;pyparametername_1&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;pytype_1&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">       </span><span class="nt">if parameters have a default value --&gt;  type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;pytype_1&gt;, default=&lt;default_value&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;parametername_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;type_1&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;description_1&gt;</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;pyparametername_2&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;pytype_2&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">       </span><span class="nt">if parameters have a default value --&gt;  type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;pytype_2&gt;, default=&lt;default_value&gt;</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;parametername_2&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;type_2&gt;</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;description_2&gt;</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+
+<span class="w">  </span><span class="nt">returns</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;XXY&gt;Settings</span><span class="w">  </span><span class="c1"># [py]   class name of instantiated object</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">WIP</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># [py]     return descriptions are WIP to incorporate whishes from Dominic, which I do not understand yet.</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;XXY&gt;Settings</span><span class="w">  </span><span class="c1"># [cpp]  class name of instantiated object</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">WIP</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="c1"># [cpp]    return descriptions are WIP to incorporate whishes from Dominic, which I do not understand yet.</span>
+</code></pre></div></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "content.code.annotate", "navigation.tracking", "content.code.copy"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+
+      <script src="../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+      
+    
+
+<!-- Extra JavaScript (can't be set in mkdocs.yml due to content hash) -->
+<script src="../../assets/javascripts/custom.js"></script>
+
+  </body>
+</html>

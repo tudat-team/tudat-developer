@@ -1,0 +1,1646 @@
+<!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Tudat Developer Documentation">
+      
+      
+        <meta name="author" content="Geoffrey Garrett">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
+    
+    
+      
+        <title>How to write docstrings - Tudat Developer</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://unpkg.com/mermaid@9.4.0/dist/mermaid.css">
+    
+      <link rel="stylesheet" href="/assets/css/videos.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+
+<!-- Extra style sheets (can't be set in mkdocs.yml due to content hash) -->
+<link
+        rel="stylesheet"
+        href="../../assets/stylesheets/custom.css"
+/>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-write-docstrings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Tudat Developer" class="md-header__button md-logo" aria-label="Tudat Developer" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Tudat Developer
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How to write docstrings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tudat-team/tudat-developer-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tudat-team/tudat-developer-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../homebase/" class="md-tabs__link">
+        Primer
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../guides/update-conda-token/" class="md-tabs__link">
+        Guides
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../reference/environment-variables/" class="md-tabs__link">
+        Reference
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Tudat Developer" class="md-nav__button md-logo" aria-label="Tudat Developer" data-md-component="logo">
+      
+  <img src="../../assets/images/logo.png" alt="logo">
+
+    </a>
+    Tudat Developer
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tudat-team/tudat-developer-docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tudat-team/tudat-developer-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Primer
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Primer
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../homebase/" class="md-nav__link">
+        GitHub
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../azure/" class="md-nav__link">
+        Azure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../repositories/" class="md-nav__link">
+        Repositories
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentation/" class="md-nav__link">
+        Documentation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../docstring_templates/" class="md-nav__link">
+        Docstrings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../multidoc/" class="md-nav__link">
+        Multidoc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../readthedocs/" class="md-nav__link">
+        Readthedocs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/update-conda-token/" class="md-nav__link">
+        Update Anaconda Cloud Token
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-bugfix/" class="md-nav__link">
+        Create a Bugfix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-feedstock/" class="md-nav__link">
+        Create a Feedstock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-hotfix/" class="md-nav__link">
+        Create a Hotfix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-release/" class="md-nav__link">
+        Create a Release
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/create-feature/" class="md-nav__link">
+        Create a Feature
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/setup-repository/" class="md-nav__link">
+        Setup a Repository
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/environment-variables/" class="md-nav__link">
+        Environment Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/managing-tokens/" class="md-nav__link">
+        Managing Tokens
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/developer-workflows/" class="md-nav__link">
+        Developer Workflows
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/documentation-modes/" class="md-nav__link">
+        Diátaxis Framework
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/common-commands/" class="md-nav__link">
+        Common Commands
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/documentation-styling/" class="md-nav__link">
+        Documentation Styling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yaml-files" class="md-nav__link">
+    YAML files
+  </a>
+  
+    <nav class="md-nav" aria-label="YAML files">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-structure-definition" class="md-nav__link">
+    API Structure Definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yaml-files_1" class="md-nav__link">
+    yaml files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tudat-vs-tudatpy" class="md-nav__link">
+    tudat vs. tudatpy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-style" class="md-nav__link">
+    Documentation style
+  </a>
+  
+    <nav class="md-nav" aria-label="Documentation style">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#factory-functions" class="md-nav__link">
+    Factory functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derived-classes" class="md-nav__link">
+    (derived) classes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-classes" class="md-nav__link">
+    Base classes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-properties-vs-c-getterssetters" class="md-nav__link">
+    Python properties vs. C++ getters/setters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#links-within-api-elements" class="md-nav__link">
+    Links within API elements
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#link-docstrings-to-source-code" class="md-nav__link">
+    Link docstrings to source code
+  </a>
+  
+    <nav class="md-nav" aria-label="Link docstrings to source code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tudat" class="md-nav__link">
+    tudat
+  </a>
+  
+    <nav class="md-nav" aria-label="tudat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overloads" class="md-nav__link">
+    Overloads
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tudatpy" class="md-nav__link">
+    tudatpy
+  </a>
+  
+    <nav class="md-nav" aria-label="tudatpy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classes_1" class="md-nav__link">
+    Classes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-methods" class="md-nav__link">
+    Class methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-properties" class="md-nav__link">
+    Class properties
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions_1" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overloads_1" class="md-nav__link">
+    Overloads
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docstring-template" class="md-nav__link">
+    Docstring template
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<div><h1 id="how-to-write-docstrings">How to write docstrings<a class="headerlink" href="#how-to-write-docstrings" title="Permanent link">¶</a></h1>
+<p>In this guide, we will explain how to write docstrings for tudat and
+tudatpy. We will also include a template for documenting enums, classes
+and (factory) functions.</p>
+<div class="note">
+
+<div class="title">
+
+Note
+
+</div>
+
+Before diving into this guide, the user should be familiar with the page
+about `Exposing C++ to Python`.
+
+</div>
+
+<h2 id="yaml-files">YAML files<a class="headerlink" href="#yaml-files" title="Permanent link">¶</a></h2>
+<p>The source of docstrings are located in yaml files in the <a href="">docstring
+\&lt;https://github
+.com/tudat-team/tudat-multidoc/tree/main/docstrings&gt;</a> directory on
+Github. The content is divided over a file tree structure that mimics
+the structure of the tudatpy exposure (see this
+<a href="https://github.com/tudat-team/tudatpy/tree/master/tudatpy/kernel">directory</a>
+on Github), which is the same structure of the tudatpy modules. Each
+file bundles the content of a module exposure function (i.e. Ephemeris,
+Gravity Field, Rotation, etc). Within each yaml file, all module classes
+are listed under a single "classes" key, while functions are listed
+under a single "functions" key.</p>
+<div class="note">
+
+<div class="title">
+
+Note
+
+</div>
+
+For tudatpy-native classes and functions (i.e., not exposed from C++
+code but directly coded in Python), the docstrings can be written
+directly in the Python source files. Only the name of the class and
+method needs to be included in the yaml file. An example of this can be
+found [here
+\<https:>]() for the docstring and
+[here](https://github.com/tudat-team/tudat-multidoc/blob/0f6e77e5469ea4556a65d98796e1d28f143998d8/docstrings/plotting.yaml#L8)
+for the mention in the yaml file.
+
+</https:></div>
+
+<h3 id="api-structure-definition">API Structure Definition<a class="headerlink" href="#api-structure-definition" title="Permanent link">¶</a></h3>
+<p>The generic structure definition of a Python API reference system is
+provided below:</p>
+<div class="highlight"><pre><span></span><code>definition/
+├── __api__.yaml
+├── module1.yaml
+├── module2
+│         ├── __module__.yaml
+│         └── submodule1.yaml
+└── module3
+    ├── __module__.yaml
+    └── submodule2
+           └── subsubmodule.yaml
+</code></pre></div>
+<p>The building blocks can be broken down into the following elements:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Element</td>
+<td>Description</td>
+</tr>
+<tr>
+<td><code>__api__.[yml/yaml]</code></td>
+<td>API configuration file. <strong>Must exist</strong> in the API structure prefix.</td>
+</tr>
+<tr>
+<td><code>module.[yml/yaml]</code></td>
+<td>Module configuration file. Module definition as a file implicitly infers no submodules.</td>
+</tr>
+<tr>
+<td><code>/module</code></td>
+<td>Module configuration directory. <strong>Must contain</strong> <code>__module__.[yml/yaml]</code></td>
+</tr>
+<tr>
+<td><code>submodule.[yml/yaml]</code></td>
+<td>Submodule configuration file. Equivalent to a module configuration file.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="yaml-files_1"><code>yaml</code> files<a class="headerlink" href="#yaml-files_1" title="Permanent link">¶</a></h3>
+<p><a href="https://yaml.org">YAML</a> files contain the sources of the docstrings and
+are organized as key-value pairs. An example of a typical YAML file is
+provided below.</p>
+<div class="warning">
+
+<div class="title">
+
+Warning
+
+</div>
+
+The example taken from this docstring
+[file](https://github.com/tudat-team/tudat-multidoc/blob/main/docstrings/numerical_simulation/propagation_setup/integrator.yaml)
+but it was heavily adapted to make it shorter, so it does not contain
+meaningful information.
+
+</div>
+
+<div class="toggle-header" header="**Show/Hide example**">
+
+<div class="highlight"><pre><span></span><code><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">   </span><span class="no">This module provides the functionality for creating integrator settings.</span>
+
+<span class="nt">enums</span><span class="p">:</span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AvailableIntegrators</span>
+<span class="w">     </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Enumeration</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">available</span><span class="nv"> </span><span class="s">integrators."</span>
+<span class="w">     </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">       </span><span class="no">Enumeration of integrators supported by tudat.</span>
+<span class="w">     </span><span class="nt">members</span><span class="p">:</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">euler</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rungeKutta4</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">euler_type</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">runge_kutta_4_type</span><span class="w"> </span><span class="c1"># [py]</span>
+
+<span class="w w-Error"> </span><span class="nt">classes</span><span class="p">:</span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IntegratorSettings</span>
+<span class="w">     </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Functional</span><span class="nv"> </span><span class="s">base</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">define</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">integrators."</span>
+<span class="w">     </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">       </span><span class="no">Class to define settings for numerical integrators, for instance for use in numerical integration of equations of motion/</span>
+<span class="w">       </span><span class="no">variational equations. This class can be used for simple integrators such as fixed step RK and Euler. Integrators that</span>
+<span class="w">       </span><span class="no">require more settings to define have their own derived class.</span>
+<span class="w">     </span><span class="nt">methods</span><span class="p">:</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ctor</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">         </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Constructor."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">         </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Instances</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">typically</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">generated</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">because</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">base</span><span class="nv"> </span><span class="s">class."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">     </span><span class="nt">attributes</span><span class="p">:</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">initial_time</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">         </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">         </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Initial time of the integration.</span><span class="w"> </span><span class="c1"># [py]</span>
+
+<span class="w"> </span><span class="nt">functions</span><span class="p">:</span>
+<span class="w">   </span><span class="c1"># Euler</span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eulerSettings</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">   </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">euler</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">     </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Creates</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Euler</span><span class="nv"> </span><span class="s">integrator."</span>
+<span class="w">     </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">       </span><span class="no">Factory function to create settings for the Euler integrator. For this integrator, the step size is kept</span>
+<span class="w">       </span><span class="no">constant.</span>
+<span class="w">     </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">initialTime</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">         </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">initial_time</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">         </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">         </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Start time (independent variable) of numerical integration.</span>
+
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">initialTimeStep</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">         </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">       </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">initial_time_step</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">         </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">         </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Initial and constant value for the time step.</span>
+
+<span class="w">     </span><span class="nt">returns</span><span class="p">:</span>
+<span class="w">         </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IntegratorSettings</span>
+<span class="w">         </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Integrator settings object.</span>
+</code></pre></div>
+
+</div>
+
+<p>As the example shows, the following keys are accepted:</p>
+<ul>
+<li><code>extended_summary</code> (for the module)</li>
+<li><code>enums</code></li>
+<li><code>classes</code></li>
+<li><code>functions</code></li>
+</ul>
+<p>Each of those sections (except for <code>extended_summary</code>) accepts a number
+of items. Each item should start with:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="s2">"..."</span>
+</code></pre></div>
+<p>where the dots are replaced by the name of the enum, class, or function.</p>
+<div class="note">
+
+<div class="title">
+
+Note
+
+</div>
+
+\- Keys and values entries in YAML files require a leading dash *only
+if* they are part of a list. - A string can be provided in YAML files
+through quotation marks or with the `|` linebreak symbol.
+
+</div>
+
+<p>Each item also has different fields. We adopted the
+<a href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a>
+documentation style. As a result, in our API reference each function or
+class can accept all the fields specified by numpydoc (see
+<a href="https://numpydoc.readthedocs.io/en/latest/format.html#sections">here</a>
+for an extensive list).</p>
+<div class="warning">
+
+<div class="title">
+
+Warning
+
+</div>
+
+For enums, as they are not Python native objects, an additional
+`members` field is made available.
+
+</div>
+
+<h3 id="tudat-vs-tudatpy">tudat vs. tudatpy<a class="headerlink" href="#tudat-vs-tudatpy" title="Permanent link">¶</a></h3>
+<p>Tudat and tudatpy API documentations are generated from the same yaml
+files.</p>
+<p>Tudat-exclusive content is marked by the <code># [cpp]</code> tag, while
+tudatpy-exclusive content is marked by <code># [py]</code>.</p>
+<div class="note">
+
+<div class="title">
+
+Note
+
+</div>
+
+Untagged content will be included in both API documentations.
+
+</div>
+
+<p>Typically, the two APIs convey the same content. That means that the
+same functions, parameters and returns (etc) are listed in both APIs,
+where names and types are adopted to the respective API (<span class="title-ref">[cpp]</span> or <span class="title-ref">[py]</span>). Most class or function summaries are
+the same (word-by-word) for the two APIs.</p>
+<h2 id="documentation-style">Documentation style<a class="headerlink" href="#documentation-style" title="Permanent link">¶</a></h2>
+<p>The text in the docstring will be parsed and rendered by Sphinx.
+Therefore, any sphinx command can be used in the yaml files.</p>
+<div class="warning">
+
+<div class="title">
+
+Warning
+
+</div>
+
+There should be a balance between the readability of the raw docstrings
+and the intended aesthetical effects provided by Sphinx. Even if most of
+the users will consult the online API reference, the same docstrings
+will be also shipped with the `tudatpy` conda package, so the docstrings
+can be consulted locally. Docstrings with many Sphinx commands will be
+difficult to read and interpret.
+
+</div>
+
+<p>Below, a few important aspects of the documentation style are outlined.</p>
+<h3 id="factory-functions">Factory functions<a class="headerlink" href="#factory-functions" title="Permanent link">¶</a></h3>
+<div class="seealso">
+
+All examples from this subsection have been inspired from (but do not
+correspond exactly to) [this
+file](https://github.com/tudat-team/tudat-multidoc/blob/main/docstrings/numerical_simulation/environment_setup/gravity_field.yaml).
+
+</div>
+
+<p>Factory functions (FFs) are functions creating instances of objects via
+the class constructors ) and they are intended to be the user's
+interface with the actual class constructors, such that the users
+typically do not interact with the classes as such. FFs will be used
+throughout all user guides, examples and tutorials. They will be the
+user`s landing pad in the API. It is therefore the intention to supply
+all functionality-related information in the docstrings of the FF. This
+may include (but is not limited to) complete explanations for function
+parameters, information about the models (that will be created by the
+classes), model implementation and links to external resources.</p>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="nt">functions</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Factory function instantiating an object of type CentralGravityFieldSettings (see next example)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">central</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">centralGravitySettings</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">    </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Factory</span><span class="nv"> </span><span class="s">function</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">central</span><span class="nv"> </span><span class="s">gravity</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">object."</span>
+<span class="w">    </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Factory function for settings object, defining a point-mass gravity field model with user-defined gravitational parameter.</span>
+<span class="w">    </span><span class="nt">parameters</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gravitational_parameter</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gravitationalParameter</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gravitational parameter defining the point-mass gravity field.</span>
+<span class="w">    </span><span class="nt">returns</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CentralGravityFieldSettings</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instance of the :class:`~tudatpy.numerical_simulation.environment_setup.gravity_field.GravityFieldSettings` derived :class:`~tudatpy.numerical_simulation.environment_setup.gravity_field.CentralGravityFieldSettings` class</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="derived-classes">(derived) classes<a class="headerlink" href="#derived-classes" title="Permanent link">¶</a></h3>
+<p>Classes, on the other hand, are documented in a more minimalistic
+manner, focused more on code design and hierarchy and less on the
+functional aspects. Constructors of classes that have FFs implemented
+will not be documented with <code>parameters</code> and <code>returns</code> keys, since users
+are discouraged from directly using the constructor method.
+<code>short_description</code> of the constructor method will be given by the
+string <code>"Constructor"</code>. <code>extended_description</code> of the constructor method
+will refer the user to use the respective FF for creating instances of
+the given class.</p>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="nt">classes</span><span class="p">:</span>
+<span class="w">  </span><span class="c1"># Derived class from GravityFieldSettings (see next example)</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CentralGravityFieldSettings</span>
+<span class="w">    </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"`GravityFieldSettings`</span><span class="nv"> </span><span class="s">derived</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">defining</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">mass</span><span class="nv"> </span><span class="s">gravity</span><span class="nv"> </span><span class="s">field."</span>
+<span class="w">    </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Derived class of `GravityFieldSettings` for central gravity fields, which are defined by a single gravitational parameter.</span>
+
+<span class="w">    </span><span class="nt">methods</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="c1"># Class constructor</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ctor</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Constructor."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Instances</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">`CentralGravityFieldSettings`</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">created</span><span class="nv"> </span><span class="s">through</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">`centralGravitySettings`</span><span class="nv"> </span><span class="s">factory</span><span class="nv"> </span><span class="s">function."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="c1"># Class constructor's parameter</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">getGravitationalParameter</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Retrieve</span><span class="nv"> </span><span class="s">gravitational</span><span class="nv"> </span><span class="s">parameter."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">retrieve</span><span class="nv"> </span><span class="s">gravitational</span><span class="nv"> </span><span class="s">parameter</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">object."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">returns</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gravitational parameter of central gravity field.</span><span class="w"> </span><span class="c1"># [cpp]</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="base-classes">Base classes<a class="headerlink" href="#base-classes" title="Permanent link">¶</a></h3>
+<p>Base classes are to be identified as such (in <code>short_description</code>).
+Typically, users do not create instances of the base classes (but of the
+derived classes through the dedicated FFs) and this shall also be
+mentioned in the in the <code>extended_description</code>.</p>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="nt">classes</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Base class</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GravityFieldSettings</span>
+<span class="w">    </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Base</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">providing</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">automatic</span><span class="nv"> </span><span class="s">gravity</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">model</span><span class="nv"> </span><span class="s">creation."</span>
+<span class="w">    </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">This class is a functional base class for settings of gravity field models that require no information in addition to their type.</span>
+<span class="w">      </span><span class="no">Gravity field model classes requiring additional information must be created using an object derived from this class.</span>
+
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gravity_field_type</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GravityFieldType</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of gravity field model that is to be created.</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">        </span><span class="nt">readonly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w"> </span><span class="c1"># [py]</span>
+
+<span class="w">    </span><span class="nt">methods</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">__init__</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ctor</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Constructor."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Instances</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">typically</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">generated</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">user.</span><span class="nv"> </span><span class="s">Settings</span><span class="nv"> </span><span class="s">objects</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">gravity</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">models</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">instantiated</span><span class="nv"> </span><span class="s">through</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">factory</span><span class="nv"> </span><span class="s">functions</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">derived</span><span class="nv"> </span><span class="s">class."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="python-properties-vs-c-getterssetters">Python properties vs. C++ getters/setters<a class="headerlink" href="#python-properties-vs-c-getterssetters" title="Permanent link">¶</a></h3>
+<p>An exception to the analogous structure of the two APIs is the treatment
+of class attributes.</p>
+<p>The original get/set methods of the tudat classes are exposed as
+"properties" in tudatpy classes (see our guide about
+<code>Class attributes in C++ vs. in Python</code>).</p>
+<p>As a result, class attributes are only documented as such for the
+tudatpy API, while the get/set methods of the classes are documented in
+the tudat API instead.</p>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="nt">classes</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Derived class</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CentralGravityFieldSettings</span>
+<span class="w">    </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"`GravityFieldSettings`</span><span class="nv"> </span><span class="s">derived</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">defining</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">mass</span><span class="nv"> </span><span class="s">gravity</span><span class="nv"> </span><span class="s">field."</span>
+<span class="w">    </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">Derived class of `GravityFieldSettings` for central gravity fields, which are defined by a single gravitational parameter.</span>
+
+<span class="w">    </span><span class="c1"># Properties (only for Python)</span>
+<span class="w">    </span><span class="nt">properties</span><span class="p">:</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gravitational_parameter</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">float</span><span class="w"> </span><span class="c1"># [py]</span>
+<span class="w">        </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gravitational parameter of central gravity field.</span><span class="w"> </span><span class="c1"># [py]</span>
+
+<span class="w">    </span><span class="nt">methods</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ctor</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Constructor."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Instances</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">`CentralGravityFieldSettings`</span><span class="nv"> </span><span class="s">class</span><span class="nv"> </span><span class="s">should</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">created</span><span class="nv"> </span><span class="s">through</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">`centralGravitySettings`</span><span class="nv"> </span><span class="s">factory</span><span class="nv"> </span><span class="s">function."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">        </span><span class="c1"># Getter (only for C++)</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">getGravitationalParameter</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Retrieve</span><span class="nv"> </span><span class="s">gravitational</span><span class="nv"> </span><span class="s">parameter."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">retrieve</span><span class="nv"> </span><span class="s">gravitational</span><span class="nv"> </span><span class="s">parameter</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">object."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">None</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">returns</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gravitational parameter of central gravity field.</span><span class="w"> </span><span class="c1"># [cpp]</span>
+
+<span class="w">        </span><span class="c1"># Setter (only for C++)</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">resetGravitationalParameter</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">short_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Reset</span><span class="nv"> </span><span class="s">gravitational</span><span class="nv"> </span><span class="s">parameter."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">extended_summary</span><span class="p">:</span><span class="w"> </span><span class="s">"Function</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">reset</span><span class="nv"> </span><span class="s">gravitational</span><span class="nv"> </span><span class="s">parameter</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">object."</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">        </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gravitationalParameter</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">double</span><span class="w"> </span><span class="c1"># [cpp]</span>
+<span class="w">            </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gravitational parameter of central gravity field that is to be defined by the settings object.</span><span class="w"> </span><span class="c1"># [cpp]</span>
+</code></pre></div>
+
+</div>
+
+<h3 id="links-within-api-elements">Links within API elements<a class="headerlink" href="#links-within-api-elements" title="Permanent link">¶</a></h3>
+<p>It is possible to include in a docstring a link to another API element
+via
+<a href="https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html">intersphinx</a>.</p>
+<p>This can be done with the following syntax:</p>
+<div class="highlight"><pre><span></span><code>:ObjectName:`~path.to.object`
+</code></pre></div>
+<p>where <code>ObjectName</code> can be one of the following:</p>
+<ul>
+<li><code>class</code></li>
+<li><code>func</code></li>
+</ul>
+<div class="toggle-header" header="**Class example**">
+
+<div class="highlight"><pre><span></span><code>:class:`~tudatpy.numerical_simulation.environment_setup.gravity_field.GravityFieldSettings`
+</code></pre></div>
+
+</div>
+
+<div class="toggle-header" header="**Function example**">
+
+<div class="highlight"><pre><span></span><code>:func:`~tudatpy.numerical_simulation.environment_setup.get_default_body_settings`
+</code></pre></div>
+
+</div>
+
+<div class="note">
+
+<div class="title">
+
+Note
+
+</div>
+
+While this is demonstrated here for links to tudatpy methods, a link to
+any of python, sphinx, pagmo, numpy, scipy, or matplotlib methods is (in
+theory) also feasible.
+
+</div>
+
+<div class="todo">
+
+Unfortunately, although other object types (such as properties or
+modules) should work with the same syntax (e.g., see sphinx
+[resource](https://www.sphinx-doc.org/en/master/usage/restructuredtext/domains.html#cross-referencing-python-objects)),
+it is currently not working on our API system (see this [open
+issue](https://github.com/tudat-team/tudat-space/issues/27#)).
+
+</div>
+
+<h2 id="link-docstrings-to-source-code">Link docstrings to source code<a class="headerlink" href="#link-docstrings-to-source-code" title="Permanent link">¶</a></h2>
+<p>The docstrings need to be linked in the code such that, during the API
+build, a connection from docstrings to the code can be made. This is
+different between tudat and tudatpy.</p>
+<h3 id="tudat">tudat<a class="headerlink" href="#tudat" title="Permanent link">¶</a></h3>
+<p>This is done by placing tags right above the class/function declaration
+in the header files of the cpp source code
+(<a href="https://github.com/tudat-team/tudat/tree/master/include/tudat">here</a>
+on Github) as follows:</p>
+<h4 id="classes">Classes<a class="headerlink" href="#classes" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">//! @get_docstring(&lt;ClassName&gt;.__docstring__)</span>
+</code></pre></div>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="c1">//! @get_docstring(ThrustAccelerationSettings.__docstring__)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ThrustAccelerationSettings</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AccelerationSettings</span><span class="p">{</span>
+<span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+
+<h4 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1">//! @get_docstring(&lt;function_name&gt;)</span>
+</code></pre></div>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="c1">//! @get_docstring(customAccelerationSettings)</span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">AccelerationSettings</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">customAccelerationSettings</span><span class="p">(</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3d</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">accelerationFunction</span><span class="p">,</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="w"> </span><span class="kt">double</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">scalingFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="p">){</span>
+<span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+
+<h4 id="overloads">Overloads<a class="headerlink" href="#overloads" title="Permanent link">¶</a></h4>
+<p>For overload nr. X (X=0,1,...) of a function:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//! @get_docstring(&lt;function_name&gt;, X)</span>
+</code></pre></div>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="c1">//! @get_docstring(thrustAcceleration, 0)</span>
+<span class="kr">inline</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">AccelerationSettings</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">thrustAcceleration</span><span class="p">(</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ThrustDirectionSettings</span><span class="w"> </span><span class="o">&gt;</span>
+<span class="w">        </span><span class="n">thrustDirectionGuidanceSettings</span><span class="p">,</span>
+<span class="w">       </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="w"> </span><span class="n">ThrustMagnitudeSettings</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">thrustMagnitudeSettings</span><span class="w"> </span><span class="p">){</span>
+<span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+
+<div class="note">
+
+<div class="title">
+
+Note
+
+</div>
+
+All other tags present in .cpp/.h files, used to connect the source code
+to the Doxygen documentation engine, should be removed, otherwise they
+will be automatically included in the API.
+
+</div>
+
+<h3 id="tudatpy">tudatpy<a class="headerlink" href="#tudatpy" title="Permanent link">¶</a></h3>
+<p>In order to make the link to the exposed tudatpy classes and functions,
+the docstrings need to be exposed as well. This can be done as follows.</p>
+<h4 id="classes_1">Classes<a class="headerlink" href="#classes_1" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;ClassName&gt;"</span><span class="p">).</span><span class="n">c_str</span><span class="p">()</span>
+</code></pre></div>
+<p>as last argument of <code>py:class_&lt;&gt;()</code>, as in</p>
+<div class="highlight"><pre><span></span><code><span class="nl">py</span><span class="p">:</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">CppClass</span><span class="p">,</span><span class="w"> </span><span class="n">CppPointerToClass</span><span class="p">,</span><span class="w"> </span><span class="n">CppParentClass</span><span class="o">&gt;</span><span class="p">(</span><span class="k">module</span><span class="p">,</span><span class="w"> </span><span class="s">"ClassName"</span><span class="p">,</span><span class="w"> </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;ClassName&gt;"</span><span class="p">).</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="n">py</span><span class="o">::</span><span class="n">class_</span><span class="o">&lt;</span><span class="n">tss</span><span class="o">::</span><span class="n">ThrustAccelerationSettings</span><span class="p">,</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">tss</span><span class="o">::</span><span class="n">ThrustAccelerationSettings</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">tss</span><span class="o">::</span><span class="n">AccelerationSettings</span><span class="o">&gt;</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="w"> </span><span class="s">"ThrustAccelerationSettings"</span><span class="p">,</span>
+<span class="w">                                   </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"ThrustAccelerationSettings"</span><span class="p">).</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+
+</div>
+
+<h4 id="class-methods">Class methods<a class="headerlink" href="#class-methods" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;ClassName.MethodName&gt;"</span><span class="p">).</span><span class="n">c_str</span><span class="p">()</span>
+</code></pre></div>
+<p>as last argument of <code>.def()</code>, as in</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">"MethodName"</span><span class="p">,</span><span class="w"> </span><span class="n">CppClassName</span><span class="o">::</span><span class="n">CppMethodName</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">arg</span><span class="p">(</span><span class="s">"ParameterName"</span><span class="p">),</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;ClassName.MethodName&gt;"</span><span class="p">).</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">"integrate_equations_of_motion"</span><span class="p">,</span>
+<span class="w">     </span><span class="o">&amp;</span><span class="n">tp</span><span class="o">::</span><span class="n">SingleArcDynamicsSimulator</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">integrateEquationsOfMotion</span><span class="p">,</span>
+<span class="w">     </span><span class="n">py</span><span class="o">::</span><span class="n">arg</span><span class="p">(</span><span class="s">"initial_states"</span><span class="p">),</span>
+<span class="w">     </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"SingleArcSimulator.integrate_equations_of_motion"</span><span class="p">).</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+
+</div>
+
+<h4 id="class-properties">Class properties<a class="headerlink" href="#class-properties" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;ClassName.MethodName&gt;"</span><span class="p">).</span><span class="n">c_str</span><span class="p">()</span>
+</code></pre></div>
+<p>as last argument of <span class="title-ref">.def_property()</span> (or
+<span class="title-ref">.def_property_readonly()</span> for properties
+with a getter only), as in</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="n">def_property</span><span class="p">(</span><span class="s">"PropertyName"</span><span class="p">,</span><span class="w"> </span><span class="n">CppClassName</span><span class="o">::</span><span class="n">CppGetterMethodName</span><span class="p">,</span><span class="w"> </span><span class="n">CppClassName</span><span class="o">::</span><span class="n">CppSetterMethodName</span><span class="p">,</span><span class="w"> </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;ClassName.PropertyName&gt;"</span><span class="p">).</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+<p>or</p>
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="n">def_property_readonly</span><span class="p">(</span><span class="s">"PropertyName"</span><span class="p">,</span><span class="w"> </span><span class="n">CppClassName</span><span class="o">::</span><span class="n">CppGetterMethodName</span><span class="p">,</span><span class="w"> </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;ClassName.PropertyName&gt;"</span><span class="p">).</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="p">.</span><span class="n">def_property_readonly</span><span class="p">(</span><span class="s">"state_history"</span><span class="p">,</span>
+<span class="w">                      </span><span class="o">&amp;</span><span class="n">tp</span><span class="o">::</span><span class="n">SingleArcDynamicsSimulator</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">getEquationsOfMotionNumericalSolution</span><span class="p">,</span>
+<span class="w">                      </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"SingleArcSimulator.state_history"</span><span class="p">).</span><span class="n">c_str</span><span class="p">())</span>
+</code></pre></div>
+
+</div>
+
+<h4 id="functions_1">Functions<a class="headerlink" href="#functions_1" title="Permanent link">¶</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;function_name&gt;"</span><span class="p">).</span><span class="n">c_str</span><span class="p">()</span>
+</code></pre></div>
+<p>as last argument of <code>m.def("&lt;function_name&gt;", ... )</code> exposure function.</p>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">"aerodynamic"</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tss</span><span class="o">::</span><span class="n">aerodynamicAcceleration</span><span class="p">,</span>
+<span class="w">      </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"aerodynamic"</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span>
+</code></pre></div>
+
+</div>
+
+<h4 id="overloads_1">Overloads<a class="headerlink" href="#overloads_1" title="Permanent link">¶</a></h4>
+<p>For overload nr X (X=0,1,...) of an overloaded function:</p>
+<div class="highlight"><pre><span></span><code><span class="n">get_docstring</span><span class="p">(</span><span class="s">"&lt;function_name&gt;"</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">).</span><span class="n">c_str</span><span class="p">()</span>
+</code></pre></div>
+<p>as last argument of <code>m.def("&lt;function_name&gt;", ... )</code> exposure function.</p>
+<div class="toggle-header" header="**Example**">
+
+<div class="highlight"><pre><span></span><code><span class="n">m</span><span class="p">.</span><span class="n">def</span><span class="p">(</span><span class="s">"thrust_acceleration"</span><span class="p">,</span><span class="w"> </span><span class="n">py</span><span class="o">::</span><span class="n">overload_cast</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">tss</span><span class="o">::</span><span class="n">ThrustDirectionSettings</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">tss</span><span class="o">::</span><span class="n">ThrustMagnitudeSettings</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tss</span><span class="o">::</span><span class="n">thrustAcceleration</span><span class="p">),</span>
+<span class="w">      </span><span class="n">py</span><span class="o">::</span><span class="n">arg</span><span class="p">(</span><span class="s">"thrust_direction_settings"</span><span class="p">),</span>
+<span class="w">      </span><span class="n">py</span><span class="o">::</span><span class="n">arg</span><span class="p">(</span><span class="s">"thrust_magnitude_settings"</span><span class="p">),</span>
+<span class="w">      </span><span class="n">get_docstring</span><span class="p">(</span><span class="s">"thrust_acceleration"</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">).</span><span class="n">c_str</span><span class="p">());</span>
+</code></pre></div>
+
+</div>
+
+<div class="note">
+
+<div class="title">
+
+Note
+
+</div>
+
+Class attributes do not need the `get_docstring` tag because their
+docstring is automatically retrieved from the class exposure.
+
+</div>
+
+<h2 id="docstring-template">Docstring template<a class="headerlink" href="#docstring-template" title="Permanent link">¶</a></h2>
+<p>As an additional resource, we have assembled a template to kickstart the
+writing process of docstrings. It can be found in <code>YAML templates</code>.</p></div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.instant", "content.code.annotate", "navigation.tracking", "content.code.copy"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+
+      <script src="../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
+      
+    
+
+<!-- Extra JavaScript (can't be set in mkdocs.yml due to content hash) -->
+<script src="../../assets/javascripts/custom.js"></script>
+
+  </body>
+</html>

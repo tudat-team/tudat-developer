@@ -1,0 +1,12 @@
+name: repo-tudat-developer
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - mkdocs-material
+      - lightgallery
+      - mkdocs-with-pdf
+      - mkdocs-plugin-inline-svg
+      - mkdocs-video

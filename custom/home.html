@@ -1,0 +1,193 @@
+
+
+{% extends "main.html" %}
+
+{% block tabs %}
+{{ super() }}
+
+<!-- Additional styles for landing page -->
+<style>
+    /* Application header should be static for the landing page */
+    .md-header {
+        position: initial;
+    }
+
+    /* Remove spacing, as we cannot hide it completely */
+    .md-main__inner {
+        margin: 0;
+    }
+
+    /* Hide table of contents */
+    @media screen and (min-width: 60em) {
+        .md-sidebar--secondary {
+            display: none;
+        }
+    }
+
+    /* Hide navigation */
+    @media screen and (min-width: 76.25em) {
+        .md-sidebar--primary {
+            display: none;
+        }
+    }
+
+    /* Custom styles for the scroll sections */
+    .section-link {
+        margin-bottom: 1rem;
+    }
+
+    .scroll-section {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    .scroll-section.visible {
+        opacity: 1;
+    }
+
+    /* Alternating background colors */
+    .scroll-section:nth-child(odd) {
+        background-color: #f0f0f0;
+    }
+
+    .scroll-section:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    /* Enable scrolling for main content */
+    .md-content {
+        display: block;
+        overflow-y: auto;
+    }
+</style>
+
+<!-- Add SmoothScroll library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.3/smooth-scroll.polyfills.min.js"></script>
+
+<!-- Add smooth scrolling and fade-in animation script -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var scroll = new SmoothScroll('a[href*="#"]', {
+            speed: 800,
+            speedAsDuration: true,
+        });
+
+        var sections = document.querySelectorAll('.scroll-section');
+
+        function fadeInOnScroll() {
+            var windowHeight = window.innerHeight;
+
+            sections.forEach(function (section) {
+                var sectionTop = section.getBoundingClientRect().top;
+
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', fadeInOnScroll);
+        fadeInOnScroll();
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- Hero for landing page -->
+<section class="mdx-container">
+    <div class="md-grid md-typeset">
+        <div class="mdx-hero">
+
+            <!-- Hero image -->
+            <div class="mdx-hero__image">
+                <svg width="100%" height="20%" viewBox="0 0 100 100">
+                    <defs>
+                        <clipPath id="clip-circle">
+                            <circle cx="62" cy="62" r="2.5"/>
+                        </clipPath>
+                    </defs>
+                    <circle cx="50" cy="50" r="10" fill="#00A6D6"/>
+                    <circle cx="50" cy="50" r="17" fill="none" stroke="#00A6D6"
+                            stroke-width="2"/>
+                    <circle cx="62" cy="62" r="2.5" fill="#00A6D6" stroke="#000"
+                            stroke-width="0.0">
+                        <animateTransform
+                                attributeName="transform"
+                                attributeType="XML"
+                                type="rotate"
+                                from="0 50 50"
+                                to="360 50 50"
+                                dur="5s"
+                                repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="67" cy="67" r="2.5" fill="#00A6D6" stroke="#000"
+                            stroke-width="0.0">
+                        <animateTransform
+                                attributeName="transform"
+                                attributeType="XML"
+                                type="rotate"
+                                from="0 50 50"
+                                to="360 50 50"
+                                dur="8s"
+                                repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="50" cy="50" r="24" fill="none" stroke="#00A6D6"
+                            stroke-width="2"/>
+                </svg>            </div>
+
+            <!-- Hero content -->
+            <div class="mdx-hero__content">
+                <h1>Technical documentation that just works</h1>
+                <p>{{ config.site_description }}. Set up in 5 minutes.</p>
+                <a
+                        href="{{ page.next_page.url | url }}"
+                        title="{{ page.next_page.title | e }}"
+                        class="md-button md-button--primary"
+                >
+                    Quick start
+                </a>
+                <a
+                        href="{{ 'insiders/' | url }}"
+                        title="Material for MkDocs Insiders"
+                        class="md-button"
+                >
+                    Get Insiders
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add anchor links for sections -->
+<div class="section-links">
+    <a href="#section-1" class="section-link">Section 1</a>
+    <a href="#section-2"
+class="section-link">Section 2</a>
+<a href="#section-3" class="section-link">Section 3</a>
+</div>
+<!-- Add scroll sections with content -->
+<div class="scroll-sections">
+    <section id="section-1" class="scroll-section">
+        <div class="md-grid md-typeset">
+            <h2>Section 1</h2>
+            <p>Content for section 1 goes here...</p>
+        </div>
+    </section>
+    <section id="section-2" class="scroll-section">
+        <div class="md-grid md-typeset">
+            <h2>Section 2</h2>
+            <p>Content for section 2 goes here...</p>
+        </div>
+    </section>
+    <section id="section-3" class="scroll-section">
+        <div class="md-grid md-typeset">
+            <h2>Section 3</h2>
+            <p>Content for section 3 goes here...</p>
+        </div>
+    </section>
+</div>
+{% endblock %}
+<!-- Application footer -->
+{% block footer %}{% endblock %}
