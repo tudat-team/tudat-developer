@@ -1,0 +1,5 @@
+mkdocs-material
+lightgallery
+mkdocs-with-pdf
+mkdocs-plugin-inline-svg
+mkdocs-video
